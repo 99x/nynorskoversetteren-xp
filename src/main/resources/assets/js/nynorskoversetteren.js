@@ -163,6 +163,7 @@ function autoTranslateText(elem) {
         .then(response => {
             if (response.status == 200) {
                 console.log(`OK`, response)
+                window.location.reload()
             } else {
                 errorElem.style.display = 'block';
             }

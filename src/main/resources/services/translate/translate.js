@@ -1,9 +1,10 @@
 const Content = require('/lib/xp/content')
 const Context = require('/lib/xp/context')
+const Common = require('/lib/xp/common')
+const Node = require('/lib/xp/node')
+
 const Totaltekst = require('/lib/modules/totaltekst')
 const Util = require('/lib/modules/util')
-
-const Node = require('/lib/xp/node')
 
 const DateFns = require('/lib/external/date-fns')
 
@@ -62,6 +63,10 @@ function autoTranslate(apiKey, contentId) {
 
                 processPage(apiKey, componentFields)
 
+                if(node.inherit){
+                    node.inherit = node.inherit.filter(flag => flag !== "CONTENT" && flag !== "NAME");
+                }
+
                 if (!node.workflow) node.workflow = {}
                 node.workflow.state = 'IN_PROGRESS'
 
@@ -118,8 +123,13 @@ function processPage(apiKey, obj) {
 }
 
 function translateMainFields(apiKey, obj) {
-    const translated = obj.displayName ? Totaltekst.translate(apiKey, obj.displayName) : null
-    if (translated) {
-        obj.displayName = translated
+    const name = obj.displayName ? Totaltekst.translate(apiKey, obj.displayName) : null
+
+    if (name) {
+        obj.displayName = name
+        Content.move({
+            source: obj._id,
+            target: Common.sanitize(name),
+        })
     }
 }

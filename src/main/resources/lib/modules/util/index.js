@@ -7,7 +7,7 @@ module.exports = {
     parseJSON,
     localize,
     isUrlValue,
-    isUUIDValue
+    isUUIDValue,
 }
 
 function performRequest(request, MAX_RETRY = 3){

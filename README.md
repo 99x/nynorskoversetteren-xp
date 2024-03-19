@@ -22,6 +22,13 @@ Install the application and add it to your site. A valid API Key from Totaltekst
 
 Editors may want to double check and review the translated values before publishing the changes.
 
+## Releases and Compatibility
+
+| Version | XP version   |
+| ------- | ------------ |
+| 1.0.x  | 7.9.0       |
+| 2.x.x  | 7.9.0       |
+
 ## License and credits
 
 A license is required to use this application. Once the app is installed, the Widget will be blocked until a license is provided.
